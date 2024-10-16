@@ -32,6 +32,7 @@
     const registerForm = document.getElementById("registerForm");
     const toggleFormButton = document.getElementById("toggleForm");
 
+    // Listener para cambiar entre formularios
     toggleFormButton.addEventListener("click", () => {
         if (loginForm.style.display === "none") {
             loginForm.style.display = "block";
@@ -44,6 +45,7 @@
         }
     });
 
+    // Manejo del inicio de sesión
     loginForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -60,12 +62,13 @@
 
         if (response.ok) {
             sessionStorage.setItem("isAuthenticated", "true");
-            window.location.href = "index.html";
+            window.location.href = "index.html"; // Redirigir a la página principal
         } else {
             alert("Usuario o contraseña incorrectos");
         }
     });
 
+    // Manejo del registro de usuario
     registerForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -82,6 +85,7 @@
 
         if (response.ok) {
             alert("Usuario registrado exitosamente. Ahora puedes iniciar sesión.");
+            // Volver al formulario de inicio de sesión
             loginForm.style.display = "block";
             registerForm.style.display = "none";
             toggleFormButton.textContent = "Switch to Register";
