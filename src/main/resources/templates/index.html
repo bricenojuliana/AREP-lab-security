@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Management</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        async function fetchProperties() {
+            const response = await fetch('/properties');
+            const properties = await response.json();
+            const propertyList = document.getElementById('property-list');
+            propertyList.innerHTML = '';
+            properties.forEach(property => {
+                propertyList.innerHTML += `
+                    <li>
+                        <div class="property-info">
+                            <strong>Address:</strong> ${property.address} <br>
+                            <strong>Price:</strong> $${property.price} <br>
+                            <strong>Size:</strong> ${property.size} sqft <br>
+                            <strong>Description:</strong> ${property.description}
+                        </div>
+                        <div class="property-buttons">
+                            <button onclick="editProperty(${property.id})"><i class="fas fa-edit"></i> Edit</button>
+                            <button onclick="deleteProperty(${property.id})"><i class="fas fa-trash-alt"></i> Delete</button>
+                        </div>
+                    </li>
+                `;
+            });
+        }
+
+        async function createProperty() {
+            const address = document.getElementById('address').value;
+            const price = document.getElementById('price').value;
+            const size = document.getElementById('size').value;
+            const description = document.getElementById('description').value;
+
+            await fetch('/properties', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ address, price, size, description })
+            });
+            console.log(JSON.stringify({ address, price, size, description }));
+            fetchProperties();
+            document.querySelector("form").reset();
+        }
+
+        async function editProperty(id) {
+            const newAddress = prompt("Enter new address:");
+            const newPrice = prompt("Enter new price:");
+            const newSize = prompt("Enter new size:");
+            const newDescription = prompt("Enter new description:");
+
+            await fetch(`/properties/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    address: newAddress,
+                    price: newPrice,
+                    size: newSize,
+                    description: newDescription
+                })
+            });
+            fetchProperties();
+        }
+
+        async function deleteProperty(id) {
+            await fetch(`/properties/${id}`, {
+                method: 'DELETE'
+            });
+            fetchProperties();
+        }
+
+        window.onload = fetchProperties;
+    </script>
+</head>
+<body>
+<h1>Property Management</h1>
+
+<h2>Add Property</h2>
+<form onsubmit="event.preventDefault(); createProperty();">
+    <label for="address">Address:</label>
+    <input type="text" id="address" required>
+    <label for="price">Price:</label>
+    <input type="number" id="price" required>
+    <label for="size">Size (sqft):</label>
+    <input type="number" id="size" required>
+    <label for="description">Description:</label>
+    <input type="text" id="description" required>
+    <button type="submit">Add Property</button>
+</form>
+
+<h2>Property List</h2>
+<ul id="property-list"></ul>
+</body>
+</html>
