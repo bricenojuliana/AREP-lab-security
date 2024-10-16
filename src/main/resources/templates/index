@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script>
-        const BASE_URL = 'http://localhost:8080'; // Cambia esto según sea necesario
+        const BASE_URL = 'https://ec2-54-145-230-76.compute-1.amazonaws.com:8080'; // Cambia esto según sea necesario
 
         window.onload = function() {
             // Verifica si el usuario ha iniciado sesión
