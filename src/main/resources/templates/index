@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script>
+        const BASE_URL = 'http://localhost:8080'; // Cambia esto según sea necesario
+
         window.onload = function() {
             // Verifica si el usuario ha iniciado sesión
             if (!sessionStorage.getItem("isAuthenticated")) {
@@ -18,7 +20,7 @@
         };
 
         async function fetchProperties() {
-            const response = await fetch('/properties');
+            const response = await fetch(`${BASE_URL}/properties`);
             const properties = await response.json();
             const propertyList = document.getElementById('property-list');
             propertyList.innerHTML = '';
@@ -46,12 +48,11 @@
             const size = document.getElementById('size').value;
             const description = document.getElementById('description').value;
 
-            await fetch('/properties', {
+            await fetch(`${BASE_URL}/properties`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ address, price, size, description })
             });
-            console.log(JSON.stringify({ address, price, size, description }));
             fetchProperties();
             document.querySelector("form").reset();
         }
@@ -62,7 +63,7 @@
             const newSize = prompt("Enter new size:");
             const newDescription = prompt("Enter new description:");
 
-            await fetch(`/properties/${id}`, {
+            await fetch(`${BASE_URL}/properties/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -76,7 +77,7 @@
         }
 
         async function deleteProperty(id) {
-            await fetch(`/properties/${id}`, {
+            await fetch(`${BASE_URL}/properties/${id}`, {
                 method: 'DELETE'
             });
             fetchProperties();

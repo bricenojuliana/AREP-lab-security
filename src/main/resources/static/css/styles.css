@@ -134,4 +134,16 @@ form button:hover {
         flex-basis: 100%;
         justify-content: space-between;
     }
+
+    #toggleForm {
+        background-color: #007bff; /* Un color de fondo temporal */
+        color: white; /* Asegúrate de que el texto sea visible */
+        padding: 10px 15px; /* Añadir un poco de padding */
+        border: none; /* Quitar el borde */
+        border-radius: 5px; /* Bordes redondeados */
+        cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+        margin-top: 20px; /* Espaciado superior */
+        display: block;
+    }
+
 }

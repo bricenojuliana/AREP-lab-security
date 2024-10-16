@@ -28,11 +28,13 @@
 <button id="toggleForm">Switch to Register</button>
 
 <script>
+    const BASE_URL = 'http://localhost:8080'; // Cambia esto según sea necesario
+
     const loginForm = document.getElementById("loginForm");
     const registerForm = document.getElementById("registerForm");
     const toggleFormButton = document.getElementById("toggleForm");
 
-    // Listener para cambiar entre formularios
+    // Alternar entre los formularios de inicio de sesión y registro
     toggleFormButton.addEventListener("click", () => {
         if (loginForm.style.display === "none") {
             loginForm.style.display = "block";
@@ -45,14 +47,14 @@
         }
     });
 
-    // Manejo del inicio de sesión
+    // Manejar el inicio de sesión
     loginForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const username = document.getElementById("login-username").value;
         const password = document.getElementById("login-password").value;
 
-        const response = await fetch("/users/login", {
+        const response = await fetch(`${BASE_URL}/users/login`, { // Usando BASE_URL
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -62,20 +64,20 @@
 
         if (response.ok) {
             sessionStorage.setItem("isAuthenticated", "true");
-            window.location.href = "index.html"; // Redirigir a la página principal
+            window.location.href = `${BASE_URL}/index.html`; // Cambia a la URL principal de tu aplicación
         } else {
             alert("Usuario o contraseña incorrectos");
         }
     });
 
-    // Manejo del registro de usuario
+    // Manejar el registro de usuario
     registerForm.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const username = document.getElementById("register-username").value;
         const password = document.getElementById("register-password").value;
 
-        const response = await fetch("/users/register", {
+        const response = await fetch(`${BASE_URL}/users/register`, { // Usando BASE_URL
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -85,7 +87,6 @@
 
         if (response.ok) {
             alert("Usuario registrado exitosamente. Ahora puedes iniciar sesión.");
-            // Volver al formulario de inicio de sesión
             loginForm.style.display = "block";
             registerForm.style.display = "none";
             toggleFormButton.textContent = "Switch to Register";
