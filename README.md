@@ -38,14 +38,69 @@ The architecture diagram below illustrates the relationships between the client,
 
 ![image](https://github.com/user-attachments/assets/cb19446c-b79f-4d47-91d6-9be75d183663)
 
-Class Diagram: 
-![image](https://github.com/user-attachments/assets/66e8c875-7c31-4acf-9b3f-ac87bcc42884)
 
 
-The diagram depicts:
-- User interaction with the client (HTML+JS), served by Apache.
-- Secure asynchronous communication with the backend (Spring Boot).
-- Database access limited to the backend for added security.
+
+
+### Class Diagram Overview
+
+This section provides an overview of the class diagram for our Property Management Application. The diagram illustrates the key classes and their relationships, helping to understand the application's architecture and data flow.
+
+
+![image](https://github.com/user-attachments/assets/0aeee553-f274-437c-9919-472958b18fac)
+
+
+#### Key Classes
+
+1. **Customer**
+   - **Purpose**: Represents a customer in the application. This class contains attributes such as `firstName`, `lastName`, and `id`, which uniquely identifies each customer.
+   - **Functionality**: Includes methods to retrieve customer details and to generate a string representation of the customer object.
+
+2. **CustomerRepository**
+   - **Purpose**: Serves as an interface for performing database operations related to customers.
+   - **Functionality**: Provides methods like `findByLastName` to search for customers based on their last name and `findById` to retrieve a customer by their unique identifier.
+
+3. **User**
+   - **Purpose**: Represents a user in the system, primarily for authentication and authorization purposes.
+   - **Functionality**: Contains attributes like `username` and `passwordHash`, along with methods to manage these attributes, ensuring secure handling of user credentials.
+
+4. **UserRepository**
+   - **Purpose**: Facilitates interaction with the user data in the database.
+   - **Functionality**: Includes methods for user management, such as `findByUsername` for locating a user by their username and `findById` for fetching a user by their unique ID.
+
+5. **UserController**
+   - **Purpose**: Acts as the intermediary between the User model and the user interface, handling HTTP requests related to user operations.
+   - **Functionality**: Provides endpoints for user registration and login, ensuring that appropriate responses are returned based on the operation's success or failure.
+
+6. **Property**
+   - **Purpose**: Represents a property in the application, encompassing details like `address`, `description`, `price`, and `size`.
+   - **Functionality**: Offers methods to access property attributes and a string representation for easy display.
+
+7. **PropertyRepository**
+   - **Purpose**: Manages database interactions for properties.
+   - **Functionality**: Provides methods for retrieving all properties and finding specific properties by their unique identifiers.
+
+8. **PropertyController**
+   - **Purpose**: Serves as the interface for handling property-related HTTP requests.
+   - **Functionality**: Contains endpoints for retrieving properties, updating them, saving new properties, and deleting existing ones, facilitating CRUD operations.
+
+9. **AccessingDataJpaApplication**
+   - **Purpose**: The main application class responsible for bootstrapping the application.
+   - **Functionality**: Contains methods for initializing demo data and starting the application.
+
+10. **WebConfig**
+    - **Purpose**: Configures application-wide settings, such as CORS (Cross-Origin Resource Sharing).
+    - **Functionality**: Ensures that the application adheres to security policies for cross-origin requests.
+
+#### Relationships
+
+- **Dependency**: 
+  - The `UserController` and `PropertyController` classes depend on their respective repositories (`UserRepository` and `PropertyRepository`) for data management. This allows for a clear separation of concerns, with controllers focused on handling HTTP requests and repositories dedicated to database interactions.
+  
+- **Association**: 
+  - The `CustomerRepository` and `UserRepository` are linked to their respective entity classes (`Customer` and `User`), indicating that these repositories manage the lifecycle of their entities.
+
+
 
 ## Deployment Instructions
 
