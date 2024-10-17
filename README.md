@@ -36,7 +36,8 @@ The architecture consists of three main layers:
 
 The architecture diagram below illustrates the relationships between the client, backend, and database components:
 
-![image](https://github.com/user-attachments/assets/64565e13-d276-415c-822c-8220493141ac)
+![image](https://github.com/user-attachments/assets/cb19446c-b79f-4d47-91d6-9be75d183663)
+
 
 
 The diagram depicts:
@@ -57,9 +58,9 @@ The diagram depicts:
         - Verify that HTTPS is enabled for the domain.
 
 ### 2. Backend Deployment
-   - **Environment**: Deploy the Spring Boot application on a separate EC2 instance.
+   - **Environment**: Deploy the Spring Boot application on a separate EC2 instance with .
    - **Steps**:
-     1. Install Java, Maven and Git on the instance.
+     1. Install Java 17, Maven 3.8.4 and Git on the instance.
      2. Clone the repository
         
         ```
@@ -103,7 +104,7 @@ The diagram depicts:
 - **Amazon EC2 Instances**: Three instances for the frontend, backend, and database.
 - **Software Dependencies**:
   - Apache (for serving the frontend).
-  - Java Spring Boot (backend).
+  - Java 17 (backend).
   - MySQL (database).
   - Certbot (for TLS configuration with Let's Encrypt).
 
