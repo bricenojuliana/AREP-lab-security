@@ -7,9 +7,7 @@ This project is a web-based application for managing properties, featuring secur
 2. [Deployment Instructions](#deployment-instructions)
 3. [Security Implementation](#security-implementation)
 4. [Requirements](#requirements)
-5. [Getting Started](#getting-started)
-6. [Demonstration Videos](#demonstration-videos)
-7. [Future Improvements](#future-improvements)
+5. [Demonstration Videos](#demonstration-videos)
 
 ## Application Architecture
 
