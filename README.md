@@ -128,7 +128,7 @@ This section provides an overview of the class diagram for our Property Manageme
         ```
         mvn clean install
         ```
-     6. Deploy the backend application (`.jar` file).
+     6. Run the backend application (`.jar` file).
         ```
         sudo java -jar target/jpa-0.0.1-SNAPSHOT.jar
         ```
