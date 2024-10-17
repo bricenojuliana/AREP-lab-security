@@ -1,4 +1,4 @@
-# Property Management App
+[Deploy-security.webm](https://github.com/user-attachments/assets/80eadeb8-bb62-4ba8-a08e-db8cd7e6ae02)# Property Management App
 
 This project is a web-based application for managing properties, featuring secure user authentication and CRUD operations for properties. The architecture is designed for scalability, using separate Amazon EC2 instances for the frontend, backend, and database components.
 
@@ -171,7 +171,9 @@ This section provides an overview of the class diagram for our Property Manageme
 To provide a better understanding of the deployment and application functionality, you can watch the following videos:
 
 1. **Deployment Video**:
- 
+
+ [Deploy-security.webm](https://github.com/user-attachments/assets/d199f1fe-bab9-4884-91f1-33c94be4e9df)
+
 
 2. **Demo Video**:
    
