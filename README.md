@@ -38,6 +38,8 @@ The architecture diagram below illustrates the relationships between the client,
 
 ![image](https://github.com/user-attachments/assets/cb19446c-b79f-4d47-91d6-9be75d183663)
 
+Class Diagram: 
+![image](https://github.com/user-attachments/assets/66e8c875-7c31-4acf-9b3f-ac87bcc42884)
 
 
 The diagram depicts:
