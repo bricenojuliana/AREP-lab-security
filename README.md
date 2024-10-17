@@ -179,3 +179,6 @@ To provide a better understanding of the deployment and application functionalit
    
 [Demo-security.webm](https://github.com/user-attachments/assets/3dc4adbf-66fd-4a1d-b805-ce3533996e84)
 
+## Author
+Juliana Briceño
+
