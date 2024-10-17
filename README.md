@@ -36,6 +36,8 @@ The architecture consists of three main layers:
 
 The architecture diagram below illustrates the relationships between the client, backend, and database components:
 
+![image](https://github.com/user-attachments/assets/64565e13-d276-415c-822c-8220493141ac)
+
 
 The diagram depicts:
 - User interaction with the client (HTML+JS), served by Apache.
@@ -51,16 +53,28 @@ The diagram depicts:
      2. Place the frontend files in the web server's document root (`/var/www/html`).
      3. Configure TLS with Let's Encrypt:
         - Install Certbot.
-        - Run `sudo certbot --apache` to generate and install the certificate.
+        - Generate and install the certificate.
         - Verify that HTTPS is enabled for the domain.
 
 ### 2. Backend Deployment
    - **Environment**: Deploy the Spring Boot application on a separate EC2 instance.
    - **Steps**:
-     1. Install Java and Spring Boot on the instance.
-     2. Deploy the backend application (`.jar` file).
-     3. Configure a reverse proxy with Apache or Nginx if needed.
-     4. Set up TLS using Let's Encrypt:
+     1. Install Java, Maven and Git on the instance.
+     2. Clone the repository
+        
+        ```
+        git clone https://github.com/bricenojuliana/AREP-lab-security
+        ```
+        
+     4. Compile the application
+        ```
+        mvn clean install
+        ```
+     6. Deploy the backend application (`.jar` file).
+        ```
+        sudo java -jar target/jpa-0.0.1-SNAPSHOT.jar
+        ```
+     7. Set up TLS using Let's Encrypt:
         - Install Certbot.
         - Use Certbot to create and install certificates for the backend.
 
@@ -69,7 +83,7 @@ The diagram depicts:
    - **Steps**:
      1. Install MySQL server.
      2. Configure the database schema for user authentication and property management.
-     3. Secure the MySQL instance by allowing access only from the backend EC2 instance.
+     3. Secure the MySQL instance by allowing access with a special user.
 
 ## Security Implementation
 
@@ -78,22 +92,17 @@ The diagram depicts:
    - TLS ensures encrypted communication between the client and server, as well as between the backend and the database.
 
 2. **Password Security**:
-   - User passwords are stored as securely hashed values (e.g., using SHA-256).
+   - User passwords are stored as securely hashed values (using SHA-256).
    - The authentication module verifies the hashes during login attempts.
 
 3. **Access Control**:
    - The backend restricts access to the database to authorized operations only.
-   - Roles and permissions can be configured to limit access to certain features.
-
-4. **Logging and Monitoring**:
-   - The application includes logging mechanisms to record security events and activities.
-   - Logs are monitored to detect any potential security threats or unauthorized access.
 
 ## Requirements
 
 - **Amazon EC2 Instances**: Three instances for the frontend, backend, and database.
 - **Software Dependencies**:
-  - Apache/Nginx (for serving the frontend and reverse proxy).
+  - Apache (for serving the frontend).
   - Java Spring Boot (backend).
   - MySQL (database).
   - Certbot (for TLS configuration with Let's Encrypt).
